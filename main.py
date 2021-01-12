@@ -14,7 +14,7 @@ update_here = [["Chemistry Practical",      "2021 01 12 23 59"],                
 
 
 def to_left():
-    current = datetime.datetime.now() + datetime.delta(hours=5, minutes=30)                 # converts UCT to IST
+    current = datetime.datetime.now() + datetime.timedelta(hours=5, minutes=30)                 # converts UCT to IST
     temp = []                                                                               # list which will contain time remaing or over
     for i in range(len(update_here)):
         temp.append(update_here[i][1])                                                      # adds due time to list
