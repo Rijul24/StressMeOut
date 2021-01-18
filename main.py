@@ -32,7 +32,7 @@ def to_print():
     else:
         for i in range(len(update_here)):
             print_this += update_here[i][0] + "\n\t\t\t\t\t\t" + temp2[i] + "\n"
-    return print_this
+    return "```python" + print_this + "```"
 
 
 @client.event
