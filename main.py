@@ -2,11 +2,14 @@ import discord
 import datetime
 import os
 
+rick = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+
 client = discord.Client()
-update_here = [                                                             # YYYY MM DD HH MM
-               ["ESC Assignment 3",         "2021 01 15 23 59"],
-               ["Math Quiz",                "2021 01 19 23 59"],
-               ["Chemistry Quiz",           "2021 01 21 23 59"],
+update_here = [                                                                         # YYYY MM DD HH MM
+               ["Polymers Quiz",            "2021 01 29 14 30", rick],
+               ["Codechef Assignment",      "2021 01 30 22 00", "https://www.codechef.com/xxxxxxxxxxx"],
+               ["Spectroscopy Assignment",  "2021 02 01 23 59", "https://drive.google.com/file/d/xxxxxxxxxxxxxx/view?usp=sharing"],
+               ["Chemisrty practical",      "2021 02 02 23 59", "https://drive.google.com/file/d/xxxxxxxxxxxxxx/view?usp=sharing"]
                ]
 
 def to_left():                                                                          # creates a list containing time left
@@ -26,25 +29,27 @@ def to_left():                                                                  
 
 def to_print():
     temp2 = to_left()
-    print_this = str()                                                                  # final string to be printed
-    if len(update_here) == 0:                                                           # if nothing due
-        print_this += "no pending work \ngo cover your backlog"
-    else:
-        for i in range(len(update_here)):
-            print_this += update_here[i][0] + "\n\t\t\t\t\t\t" + temp2[i] + "\n"
-    return "```python" + print_this + "```"
+    embeded=discord.Embed(color=0xFF5733)
+    for i in range(len(update_here)):
+        embeded.add_field(
+            value = "[{}]({})".format(temp2[i], update_here[i][2]),
+            name = "**" + update_here[i][0] + "**",
+            inline = False
+            )
+    return embeded
 
 
 @client.event
 async def on_ready():
     print("We have logged in as {0.user}".format(client))
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name='you $stress out'))
 
 
 @client.event
 async def on_message(message):
     if message.author == client.user:
         return
-    if message.content.startswith('$stressme'):
-        await message.channel.send(to_print())
-
+    if message.content.startswith("$stressme"):
+        await message.channel.send(embed=to_print())
+       
 client.run(os.getenv('TOKEN'))                                                           # unique token for every discord bot
