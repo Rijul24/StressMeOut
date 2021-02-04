@@ -20,7 +20,7 @@ async def on_message(message):
         return
     if message.content.startswith(stress_cmds):
         await message.channel.send(embed=to_print())
-    if message.content.startswith("pls sanket"):
+    if message.content.startswith(ss_cmds):
         await message.channel.send(ssssss(message.content))
 
 # keep_alive()
