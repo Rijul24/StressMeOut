@@ -1,2 +1,2 @@
 # StressMeOut
-A Discord bot that displays time remaining untill deadline
+A Discord bot that displays time remaining until deadline
