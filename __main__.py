@@ -6,7 +6,7 @@ from to_print import to_print
 
 client = discord.Client()
 
-stress_cmds = ("$stress", "$stressme", "$strems", "stremsme", "$killme", "fuckingkillme")
+stress_cmds = ("$stress", "$stressme", "$strems", "stremsme", "$killme", "fknkillme")
 ss_cmds = ("pls ssssss", "Pls ssssss")
 
 @client.event
