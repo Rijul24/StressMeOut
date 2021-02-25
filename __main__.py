@@ -23,8 +23,7 @@ async def on_message(message):
         await message.channel.send(embed=to_left())                                                        # sends the text with assignment name and time remaining
     if message.content.lower().startswith(ss_cmds):                                                        # removes all vowels from the text
         await message.channel.send(ssssss(message.content.lower()))                                        
-    if message.content.lower().startswith('$update') and message.author.id == 00000000000:                 # my unique user id
-        if message.content.lower().startswith('$update'):
+    if message.content.lower().startswith('$update'):
       if message.author.id == 000000000000000:    # my unique user id
         l = list(message.content.split("|"))
         l[0] = l[0][7:].strip()
