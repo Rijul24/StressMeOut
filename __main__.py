@@ -24,9 +24,13 @@ async def on_message(message):
     if message.content.lower().startswith(ss_cmds):                                                        # removes all vowels from the text
         await message.channel.send(ssssss(message.content.lower()))                                        
     if message.content.lower().startswith('$update') and message.author.id == 00000000000:                 # my unique user id
-        l = list(message.content.split("|"))                                                               
+        if message.content.lower().startswith('$update'):
+      if message.author.id == 000000000000000:    # my unique user id
+        l = list(message.content.split("|"))
         l[0] = l[0][7:].strip()
-        await message.channel.send(update(l))                                                              # update the google sheets
+        await message.channel.send(update(l))                                                              # update the google sheet
+      else:                                       # if someone not authorized tries to update
+        await message.channel.send('https://cdn.discordapp.com/attachments/798458622836867094/814416864369049600/tenor.png')
 
 keep_alive()                                                                                               # pings the bot every 5 mins
 client.run(os.getenv("TOKEN"))                                                                             # unique discord token
