@@ -1,6 +1,5 @@
 # StressMeOut
-A Discord bot that displays time remaining until deadline
+A Discord bot that ~~stresses you out~~ displays time remaining until deadline
 
 imports the list from google sheets
-
-Support added for modifying the google sheet through bot
+can mdify google sheet through bot
