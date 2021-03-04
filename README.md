@@ -7,4 +7,5 @@ can modify google sheet through bot
 
 (C) Armaan Badhan 2021
 This programm is licensed under the terms of the
+
 DO WHAT THE F YOU WANT PUBLIC LICENSE.
