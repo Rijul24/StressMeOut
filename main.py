@@ -73,4 +73,4 @@ for filename in os.listdir("./cogs"):
 
 
 # Run the bot with the token
-client.run("Nzk4MjYyMDQyNjY5NjEzMDgz.X_yddQ.m6Zq175WV2auVyA8kiG0mBK9OCQ")
+client.run("0000000000000000000000000000000")
