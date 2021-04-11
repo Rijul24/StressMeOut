@@ -1,6 +1,6 @@
 from discord.ext import commands
 from asyncio import sleep
-from exttt.myembeds import *
+from myembeds import *
 
 
 class Cmds(commands.Cog):
@@ -8,7 +8,6 @@ class Cmds(commands.Cog):
         self.client = client
 
     @commands.command(aliases=["stressme", "stressmeout"])
-    # check for blocked
     async def stress(self, ctx):
         async with ctx.typing():
             await sleep(0)
@@ -19,6 +18,12 @@ class Cmds(commands.Cog):
         async with ctx.typing():
             await sleep(0)
         await ctx.send(embed=e_help(ctx))
+
+    @commands.command()
+    async def prefix(self, ctx):
+        async with ctx.typing():
+            await sleep(0)
+        await ctx.send(embed=e_whatpref(ctx))
 
 
 def setup(client):
