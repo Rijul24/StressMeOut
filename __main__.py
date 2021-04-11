@@ -1,25 +1,11 @@
 import os
-import json
 import discord
 from discord.ext import commands
-from time import time
-from asyncio import sleep
+from keep_alive import keep_alive
+from getpref import get_pref
 import myembeds
 
 print("Initializing...")
-_bot_mention = "<@!798262042669613083> "
-
-
-def is_me(ctx):
-    return ctx.message.author.id == 762615112385036288
-
-
-def get_pref(client, message):
-    with open("prefixes.json", "r") as f:
-        prefixes = json.load(f)
-    res = prefixes.get(str(message.guild.id))
-    return res, _bot_mention, "';,"
-# ~universal perfix~ = ';,
 
 
 intents = discord.Intents.all()
@@ -31,7 +17,7 @@ client = commands.Bot(
     when_mentioned=True
 )
 
-"""
+
 @client.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
@@ -39,32 +25,34 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.MissingPermissions):
         await ctx.send(embed=myembeds.e_miss_perm_admin())
         return
-    if isinstance(error, commands.CheckFailure):
+    if isinstance(error, commands.CheckAnyFailure):
+        await ctx.send(embed=myembeds.e_miss_perm_role())
+        return
+    if isinstance(error, commands.NotOwner):
         await ctx.send(embed=myembeds.e_miss_perm_owner())
         return
     print(error)
-"""
 
 
 @client.command()
-@commands.check(is_me)
+@commands.is_owner()
 async def load(ctx, extension):
     client.load_extension(f"cogs.{extension}")
-    await ctx.send("**successful**")
+    await ctx.send(f"**Loaded {extension}**")
 
 
 @client.command()
-@commands.check(is_me)
+@commands.is_owner()
 async def unload(ctx, extension):
     client.unload_extension(f"cogs.{extension}")
-    await ctx.send("**successful**")
+    await ctx.send(f"**Unloaded {extension}**")
 
 
 @client.command()
-@commands.check(is_me)
+@commands.is_owner()
 async def reload(ctx, extension):
     client.reload_extension(f"cogs.{extension}")
-    await ctx.send("**successful**")
+    await ctx.send(f"**Reloaded {extension}**")
 
 
 for filename in os.listdir("./cogs"):
@@ -73,4 +61,5 @@ for filename in os.listdir("./cogs"):
 
 
 # Run the bot with the token
-client.run("0000000000000000000000000000000")
+keep_alive()
+client.run(os.getenv('TOKEN'))
